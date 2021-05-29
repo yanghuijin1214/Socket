@@ -50,14 +50,6 @@ namespace WindowsFormsApp1
             listBox1.Items.Add(responseData);
 
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            stream.Close();
-            client.Close();
-            button1.Enabled = true;
-            listBox1.Items.Add("Disconnect");
-        }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -80,6 +72,90 @@ namespace WindowsFormsApp1
             client.Close();
             button1.Enabled = true;
             listBox1.Items.Add("Disconnect");
+        }
+
+        private void button3_Click(object sender, EventArgs e)//left up
+        {
+            byte[] signal = BitConverter.GetBytes('H');
+            stream.Write(signal,0,signal.Length);
+        }
+
+        private void button4_Click(object sender, EventArgs e)//up
+        {
+            byte[] signal = BitConverter.GetBytes('A');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void button5_Click(object sender, EventArgs e)//right up
+        {
+            byte[] signal = BitConverter.GetBytes('B');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void button6_Click(object sender, EventArgs e)//left
+        {
+            byte[] signal = BitConverter.GetBytes('d');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void button7_Click(object sender, EventArgs e)//stop
+        {
+            byte[] signal = BitConverter.GetBytes('Z');
+            //byte[] signal2 = BitConverter.GetBytes('z');
+            stream.Write(signal, 0, signal.Length);
+            //stream.Write(signal2, 0, signal2.Length);
+        }
+
+        private void button8_Click(object sender, EventArgs e)//right
+        {
+            byte[] signal = BitConverter.GetBytes('b');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void button9_Click(object sender, EventArgs e)//left down
+        {
+            byte[] signal = BitConverter.GetBytes('F');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void button10_Click(object sender, EventArgs e)//down
+        {
+            byte[] signal = BitConverter.GetBytes('E');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void button11_Click(object sender, EventArgs e)//right down
+        {
+            byte[] signal = BitConverter.GetBytes('D');
+            stream.Write(signal, 0, signal.Length);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)//x,y input
+        {
+            string x = textBox3.Text;
+            string y = textBox4.Text;
+            string meg = x + "," + y;
+            //            int x1 = Int32.Parse(x);
+            //            int y1 = Int32.Parse(y);
+            byte[] message = new byte[1024];
+            message = Encoding.Default.GetBytes(meg);
+            stream.Write(message, 0, message.Length);
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)//clear
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
