@@ -46,7 +46,7 @@ namespace WindowsFormsApp_Server
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
@@ -70,10 +70,17 @@ namespace WindowsFormsApp_Server
             string str = "Connect success";
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(str);
             NetworkStream net; //네트워크스트림(소켓상에 데이터가 존재하는곳)
-            
             net = tcp.GetStream(); //네트워크스트림 얻어오기
-            net.Write(data,0,data.Length);
-            
+            net.Write(data, 0, data.Length);
+
+            while (true)
+            {
+                for (int i = 0; i < 1024; i++) bytes[i] = 0;
+                net.Read(bytes, 0, bytes.Length); //스트림읽기 C++로따지면 recv함수
+                str = Encoding.Default.GetString(bytes); //인코딩
+                listBox.Items.Add(str); //표시
+            }
+
         }
     }
 
